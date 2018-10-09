@@ -1,0 +1,63 @@
+---
+title: "R Markdown and Leaflet"
+output: html_document
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+---
+
+###Introduction
+
+Create a web page using R Markdown that features a map created with Leaflet.
+
+install.packages("leaflet")
+
+###Creating a Map with a Marker using Leaflet
+
+```{r}
+library(leaflet)
+Firstmap <- leaflet() %>% 
+  addTiles()%>%
+addMarkers(lat=30.073277, lng=31.018177,popup="work")
+Firstmap
+```
+
+###Create More than Marker
+
+```{r}
+
+MarkerData <- data.frame(lat = runif(4, min = 30.073277, max = 31.073277),
+                 lng = runif(4, min = 31.018177, max = 31.118177))
+MarkerData %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers()
+
+
+```
+
+
+###Create Circle Markers
+```{r}
+MarkerData <- data.frame(lat = runif(4, min = 30.073277, max = 31.073277),
+                 lng = runif(4, min = 31.018177, max = 31.118177))
+MarkerData %>% 
+  leaflet() %>%
+  addTiles() %>%
+ addCircleMarkers()
+
+
+```
+
+
+###Create Rectangles 
+
+```{r}
+leaflet() %>%
+  addTiles() %>%
+  
+  addRectangles(lat1 = 30.073277, lng1 = 31.018177, 
+                lat2 = 30.0711560, lng2 = 31.017004)
+
+
+
+```
+
